@@ -8,6 +8,9 @@
  * - Validação client-side
  * - aria-live region para feedback
  * - Acessibilidade completa
+ *
+ * Efeito terminal: ao entrar na viewport, o comando "contact" é digitado
+ * e o conteúdo da seção é revelado com transição leve.
  */
 ---
 
@@ -15,29 +18,39 @@
   id="contato"
   class="section bg-modern-bg"
   aria-labelledby="contact-title"
+  data-terminal-section
 >
   <div class="container-custom max-w-3xl">
-    <!-- Terminal prompt title -->
-    <p class="font-mono text-sm md:text-base text-modern-muted mb-8">
+    <!-- Terminal prompt title — data-terminal-command define o texto a ser digitado -->
+    <p
+      class="font-mono text-sm md:text-base text-modern-muted mb-8"
+      data-terminal-command="contact"
+    >
       <span class="text-modern-accent">ivanpsg@portifolio</span>:<span
         class="text-modern-accent2">~</span
-      >$ <span class="text-modern-text">contact</span>
+      >$ <span class="text-modern-text"
+        ><span data-terminal-text></span><span
+          class="terminal-cursor"
+          aria-hidden="true"></span></span
+      >
     </p>
 
-    <!-- Título da seção -->
-    <div class="mb-12">
-      <h2
-        id="contact-title"
-        class="text-3xl md:text-4xl font-bold text-modern-text mb-4"
-      >
-        Entre em <span class="text-gradient">Contato</span>
-      </h2>
-      <p class="text-lg text-modern-muted">
-        Tem um projeto em mente? Vamos conversar sobre como posso ajudar.
-      </p>
-    </div>
+    <!-- Conteúdo revelado após a digitação do comando -->
+    <div class="section-content">
+      <!-- Título da seção -->
+      <div class="mb-12">
+        <h2
+          id="contact-title"
+          class="text-3xl md:text-4xl font-bold text-modern-text mb-4"
+        >
+          Entre em <span class="text-gradient">Contato</span>
+        </h2>
+        <p class="text-lg text-modern-muted">
+          Tem um projeto em mente? Vamos conversar sobre como posso ajudar.
+        </p>
+      </div>
 
-    <!-- Formulário -->
+      <!-- Formulário -->
     <form
       id="contact-form"
       class="space-y-6"
@@ -224,6 +237,7 @@
         </a>
       </div>
     </div>
+    <!-- /section-content -->
   </div>
 </section>
 

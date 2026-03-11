@@ -5,43 +5,61 @@
  * Grid responsivo com cards de projetos
  * - 1 coluna em mobile
  * - 2 colunas em desktop
+ *
+ * Efeito terminal: ao entrar na viewport, o comando "projects" é digitado
+ * e o conteúdo da seção é revelado com transição leve.
  */
 
 import ProjectCard from "./ProjectCard.astro";
 
-// Dados dos projetos (exemplo - substituir com dados reais)
+// Dados dos projetos
 const projects = [
   {
-    title: "Sistema de Gerenciamento",
+    title: "NerdOS",
     description:
-      "API RESTful escalável para gerenciamento de recursos com autenticação JWT e banco de dados PostgreSQL.",
-    stack: ["Node.js", "Express", "PostgreSQL", "JWT"],
-    link: "https://github.com/ivanpsg",
+      "Backend para um sistema de visualização de histórico e gerenciamento de Ordens de Serviço (OS) para assistências técnicas de celulares.",
+    problem:
+      "Centraliza e organiza o histórico de ordens de serviço para reduzir retrabalho em assistências técnicas.",
+    stack: ["Node.js", "Fastify", "PostgreSQL", "Zod"],
+    link: "https://github.com/IvanPSG-BR/NerdOS-API",
     thumbnail: undefined,
+    // testUrl: URL do ambiente de demonstração/preview do projeto.
+    // Se definido com uma URL válida, o botão "Testar" fica ativo e abre o link.
+    // Se ausente ou undefined, o botão fica desativado com tooltip "Em desenvolvimento".
+    testUrl: undefined,
   },
   {
-    title: "Microserviços Financeiros",
+    title: "Flynances",
     description:
-      "Arquitetura de microserviços para processamento de transações financeiras com alta disponibilidade.",
-    stack: ["Python", "FastAPI", "Redis", "Docker"],
-    link: "https://github.com/ivanpsg",
+      "Programa de Gerenciamento de Finanças Pessoais Local-First com extensões opcionais (IA, integrações...).",
+    problem:
+      "Facilita o controle financeiro pessoal offline, sem depender de nuvem para o uso básico.",
+    stack: ["NestJS", "Vue.js", "LocalStorage", "Docker"],
+    link: "https://github.com/Avioes-Do-Deploy/Flynances",
     thumbnail: undefined,
+    testUrl: undefined,
   },
   {
-    title: "CLI Tool Automation",
+    title: "tomatty",
     description:
-      "Ferramenta de linha de comando para automação de deploys e configurações de ambiente.",
-    stack: ["Go", "CLI", "YAML", "GitHub Actions"],
-    link: "https://github.com/ivanpsg",
+      "Pomodoro simples construído em TUI que apaga (suspende) o sistema no final da sessão.",
+    problem:
+      "Ajuda a manter foco em sessões de trabalho com encerramento automático da máquina ao final.",
+    stack: ["Typescript", "TUI", "Linux", "bun"],
+    link: "https://github.com/IvanPSG-BR/tomatty",
     thumbnail: undefined,
+    testUrl: undefined,
   },
   {
-    title: "API Gateway",
+    title: "GoodFirstFinder",
     description:
-      "Gateway de API com rate limiting, cache distribuído e monitoramento em tempo real.",
-    stack: ["Rust", "Actix", "Redis", "Prometheus"],
-    link: "https://github.com/ivanpsg",
+      "Engine de busca curada para facilitar a contribuição Open Source por desenvolvedores Júniores.",
+    problem:
+      "Diminui a barreira de entrada para iniciantes encontrarem issues de OSS realmente adequadas.",
+    stack: ["Python", "FastAPI", "pgvector", "SQLAlchemy"],
+    link: "https://github.com/IvanPSG-BR/GoodFirstFinder",
     thumbnail: undefined,
+    testUrl: undefined,
   },
 ];
 ---
@@ -50,42 +68,54 @@ const projects = [
   id="projetos"
   class="section bg-modern-bg"
   aria-labelledby="projects-title"
+  data-terminal-section
 >
   <div class="container-custom">
-    <!-- Terminal prompt title -->
-    <p class="font-mono text-sm md:text-base text-modern-muted mb-8">
+    <!-- Terminal prompt title — data-terminal-command define o texto a ser digitado -->
+    <p
+      class="font-mono text-sm md:text-base text-modern-muted mb-8"
+      data-terminal-command="projects"
+    >
       <span class="text-modern-accent">ivanpsg@portifolio</span>:<span
         class="text-modern-accent2">~</span
-      >$ <span class="text-modern-text">projects</span>
+      >$ <span class="text-modern-text"
+        ><span data-terminal-text></span><span
+          class="terminal-cursor"
+          aria-hidden="true"></span></span
+      >
     </p>
 
-    <!-- Título da seção -->
-    <div class="mb-12">
-      <h2
-        id="projects-title"
-        class="text-3xl md:text-4xl font-bold text-modern-text mb-4"
-      >
-        Projetos em <span class="text-gradient">Destaque</span>
-      </h2>
-      <p class="text-lg text-modern-muted max-w-2xl">
-        Seleção de projetos que demonstram minhas habilidades em backend,
-        arquitetura e otimização de sistemas.
-      </p>
-    </div>
+    <!-- Conteúdo revelado após a digitação do comando -->
+    <div class="section-content">
+      <!-- Título da seção -->
+      <div class="mb-12">
+        <h2
+          id="projects-title"
+          class="text-3xl md:text-4xl font-bold text-modern-text mb-4"
+        >
+          Projetos em <span class="text-gradient">Destaque</span>
+        </h2>
+        <p class="text-lg text-modern-muted max-w-2xl">
+          Seleção de projetos que demonstram minhas habilidades em backend,
+          arquitetura e otimização de sistemas.
+        </p>
+      </div>
 
-    <!-- Grid de projetos -->
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
-      role="list"
-      aria-label="Lista de projetos"
-    >
-      {
-        projects.map((project) => (
-          <div role="listitem">
-            <ProjectCard {...project} />
-          </div>
-        ))
-      }
+      <!-- Grid de projetos -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+        role="list"
+        aria-label="Lista de projetos"
+      >
+        {
+          projects.map((project) => (
+            <div role="listitem">
+              <ProjectCard {...project} />
+            </div>
+          ))
+        }
+      </div>
     </div>
+    <!-- /section-content -->
   </div>
 </section>

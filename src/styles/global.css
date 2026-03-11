@@ -221,7 +221,7 @@
 
 .card:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-modern-accent);
+  border-color: var(--color-modern-accent2);
   transform: translateY(-0.25rem);
 }
 
@@ -451,5 +451,62 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================
+   TERMINAL TYPING EFFECT
+   Animação de digitação do comando terminal
+   disparada por IntersectionObserver no scroll
+   ========================================= */
+
+/* Cursor piscando no prompt do terminal */
+@keyframes terminal-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1em;
+  background-color: var(--color-modern-accent);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  /* Pisca sempre por padrão (estado idle) */
+  animation: terminal-cursor-blink 800ms step-end infinite;
+}
+
+/* Durante a digitação: cursor fixo (sem piscar), simula digitação ativa */
+.terminal-cursor.typing {
+  animation: none;
+  opacity: 1;
+}
+
+/* Conteúdo da seção: começa invisível e sobe levemente ao ser revelado */
+.section-content {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 380ms ease,
+    transform 380ms ease;
+}
+
+/* Estado visível — adicionado via JS após o comando digitar */
+.section-content.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fallback imediato para quem prefere sem animação */
+@media (prefers-reduced-motion: reduce) {
+  .section-content {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .terminal-cursor {
+    animation: none;
   }
 }

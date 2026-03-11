@@ -2,6 +2,9 @@
 /**
  * About Component - Seção Sobre Mim
  * Design: Título terminal + texto + princípios
+ *
+ * Efeito terminal: ao entrar na viewport, o comando "about" é digitado
+ * e o conteúdo da seção é revelado com transição leve.
  */
 ---
 
@@ -9,134 +12,166 @@
   id="sobre"
   class="section bg-modern-surface"
   aria-labelledby="about-title"
+  data-terminal-section
 >
   <div class="container-custom">
-    <!-- Terminal prompt title -->
-    <p class="font-mono text-sm md:text-base text-modern-muted mb-8">
+    <!-- Terminal prompt title — data-terminal-command define o texto a ser digitado -->
+    <p
+      class="font-mono text-sm md:text-base text-modern-muted mb-8"
+      data-terminal-command="about"
+    >
       <span class="text-modern-accent">ivanpsg@portifolio</span>:<span
         class="text-modern-accent2">~</span
-      >$ <span class="text-modern-text">about</span>
+      >$ <span class="text-modern-text"
+        ><span data-terminal-text></span><span
+          class="terminal-cursor"
+          aria-hidden="true"></span></span
+      >
     </p>
 
-    <!-- Título da seção -->
-    <h2
-      id="about-title"
-      class="text-3xl md:text-4xl font-bold text-modern-text mb-12"
-    >
-      Quem <span class="text-gradient">sou eu?</span>
-    </h2>
+    <!-- Conteúdo revelado após a digitação do comando -->
+    <div class="section-content">
+      <!-- Título da seção -->
+      <h2
+        id="about-title"
+        class="text-3xl md:text-4xl font-bold text-modern-text mb-12"
+      >
+        Quem <span class="text-gradient">sou eu?</span>
+      </h2>
 
-    <!-- Texto principal -->
-    <div class="space-y-4 mb-16">
-      <p class="text-base md:text-lg text-modern-muted leading-relaxed">
-        De nome <b>Ivan Pedro</b> e vindo de <b>Salvador/BA</b>, sou estudante universitário, aspirante a desenvolvedor, e além disso,
-        entusiasta da área de tecnologia. <b>Dedicado a aprender coisas novas</b>, estou sempre buscando aprimorar minhas habilidades e
-        expandir meu conhecimento. Sou apaixonado por programação e <b>estou animado para contribuir com projetos inovadores e desafiadores</b>.
-      </p>
-      <p class="text-base md:text-lg text-modern-muted leading-relaxed">
-        Meu perfil é de alguém <b>paciente, comunicativo e disposto a aprender sem medo de errar</b>.
-        Acredito que a melhor forma de crescer é enfrentando desafios e aprendendo com os erros (primeiro dos outros, depois os meus),
-        e <b>estou sempre aberto a feedbacks construtivos</b> para melhorar minhas habilidades e conhecimentos.
-      </p>
-      <p class="text-base md:text-lg text-modern-muted leading-relaxed">
-        Mesmo sem experiência profissional prévia, possuo <b>experiência acadêmica e em projetos pessoais</b>, o que me permitiu desenvolver habilidades técnicas e interpessoais.
-        Já mexi com Python, PHP, MySQL, HTML, CSS, porém agora estou focando minhas energias em <b>entrar no mercado com Node.js + TypeScript, além de PostgreSQL</b>,
-        não me limitando caso a vaga exija outras tecnologias. Estou ansioso para aplicar meu conhecimento e crescer profissionalmente na área de desenvolvimento.
-      </p>
-    </div>
+      <!-- Texto principal -->
+      <div class="space-y-4 mb-16 flex flex-col">
+        <p
+          class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
+        >
+          De nome <b>Ivan Pedro</b> e vindo de <b>Salvador/BA</b>, sou estudante
+          universitário, aspirante a desenvolvedor, e além disso, entusiasta da
+          área de tecnologia. <b>Dedicado a aprender coisas novas</b>, estou
+          sempre buscando aprimorar minhas habilidades e expandir meu
+          conhecimento. Sou apaixonado por programação e <b
+            >estou animado para contribuir com projetos inovadores e
+            desafiadores</b
+          >.
+        </p>
+        <p
+          class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
+        >
+          Meu perfil é de alguém <b
+            >paciente, comunicativo e disposto a aprender sem medo de errar</b
+          >. Acredito que a melhor forma de crescer é enfrentando desafios e
+          aprendendo com os erros (primeiro dos outros, depois os meus), e <b
+            >estou sempre aberto a feedbacks construtivos</b
+          > para melhorar minhas habilidades e conhecimentos.
+        </p>
+        <p
+          class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
+        >
+          Mesmo sem experiência profissional prévia, possuo <b
+            >experiência acadêmica e em projetos pessoais</b
+          >, o que me permitiu desenvolver habilidades técnicas e interpessoais.
+          Já mexi com Python, PHP, MySQL, HTML, CSS, porém agora estou focando
+          minhas energias em <b
+            >entrar no mercado com Node.js + TypeScript, além de PostgreSQL</b
+          >, não me limitando caso a vaga exija outras tecnologias. Estou
+          ansioso para aplicar meu conhecimento e crescer profissionalmente na
+          área de desenvolvimento.
+        </p>
+      </div>
 
-    <!-- Princípios & Valores (mantido) -->
-    <div>
-      <h3 class="text-2xl font-bold text-modern-text mb-6">
-        Princípios & Valores
-      </h3>
+      <!-- Princípios & Valores -->
+      <div>
+        <h3 class="text-2xl font-bold text-modern-text mb-6">
+          Princípios & Valores
+        </h3>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
-          <div class="flex items-start gap-4">
-            <div
-              class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
-            >
-              <svg
-                class="w-5 h-5 text-modern-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card">
+            <div class="flex items-start gap-4">
+              <div
+                class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-bold text-modern-text mb-2">Performance</h4>
-              <p class="text-sm text-modern-muted">
-                Código otimizado que roda até em hardware modesto
-              </p>
+                <svg
+                  class="w-5 h-5 text-modern-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-modern-text mb-2">Performance</h4>
+                <p class="text-sm text-modern-muted">
+                  Código otimizado que roda até em hardware modesto
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="card">
-          <div class="flex items-start gap-4">
-            <div
-              class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
-            >
-              <svg
-                class="w-5 h-5 text-modern-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+          <div class="card">
+            <div class="flex items-start gap-4">
+              <div
+                class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                ></path>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-bold text-modern-text mb-2">Simplicidade</h4>
-              <p class="text-sm text-modern-muted">
-                Soluções claras sem complexidade desnecessária
-              </p>
+                <svg
+                  class="w-5 h-5 text-modern-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-modern-text mb-2">Simplicidade</h4>
+                <p class="text-sm text-modern-muted">
+                  Soluções claras sem complexidade desnecessária
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="card">
-          <div class="flex items-start gap-4">
-            <div
-              class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
-            >
-              <svg
-                class="w-5 h-5 text-modern-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+          <div class="card">
+            <div class="flex items-start gap-4">
+              <div
+                class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-bold text-modern-text mb-2">Qualidade</h4>
-              <p class="text-sm text-modern-muted">
-                Documentação e código limpo sempre
-              </p>
+                <svg
+                  class="w-5 h-5 text-modern-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-modern-text mb-2">Qualidade</h4>
+                <p class="text-sm text-modern-muted">
+                  Documentação e código limpo sempre
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- /section-content -->
   </div>
 </section>

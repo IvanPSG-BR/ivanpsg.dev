@@ -3,25 +3,34 @@
  * ProjectCard Component - Card individual de projeto
  *
  * Props:
- * - title: Título do projeto
- * - description: Descrição breve
- * - stack: Array de tecnologias (strings)
- * - link: URL do projeto/repo
- * - thumbnail: URL da imagem (opcional)
+ * - title:       Título do projeto
+ * - description: Descrição técnica breve
+ * - problem:     Frase curta do problema resolvido (ex.: "Centraliza ordens de serviço…")
+ * - stack:       Array de tecnologias usadas (strings)
+ * - link:        URL do repositório
+ * - thumbnail:   URL da imagem/logo (opcional)
+ * - testUrl:     URL de demonstração ao vivo (opcional).
+ *                Se fornecida, o botão "Testar" fica ativo e abre o link em nova aba.
+ *                Se ausente/undefined, o botão fica desativado com tooltip "Em desenvolvimento".
  */
 
 interface Props {
   title: string;
   description: string;
+  problem?: string;
   stack: string[];
   link: string;
   thumbnail?: string;
+  testUrl?: string;
 }
 
-const { title, description, stack, link, thumbnail } = Astro.props;
+const { title, description, problem, stack, link, thumbnail, testUrl } = Astro.props;
+
+// Botão "Testar": ativo apenas quando testUrl for uma string não-vazia
+const hasTestUrl = typeof testUrl === "string" && testUrl.trim().length > 0;
 ---
 
-<article class="card group">
+<article class="card group flex flex-col">
   <!-- Thumbnail circular (opcional) -->
   {
     thumbnail && (
@@ -45,32 +54,109 @@ const { title, description, stack, link, thumbnail } = Astro.props;
     {title}
   </h3>
 
-  <!-- Descrição -->
-  <p class="text-modern-muted mb-6 leading-relaxed">
+  <!-- Descrição técnica -->
+  <p class="text-modern-muted mb-4 leading-relaxed text-sm">
     {description}
   </p>
 
-  <!-- Link para o projeto -->
-  <a
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="inline-flex items-center gap-2 text-modern-accent hover:text-modern-accent2 transition-colors duration-240 font-medium"
-    aria-label={`Ver projeto ${title} (abre em nova aba)`}
-  >
-    Ver projeto
-    <svg
-      class="w-4 h-4 transition-transform duration-240 group-hover:translate-x-1"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
+  <!-- Badges de stack -->
+  <div class="flex flex-wrap gap-2 mb-4" aria-label={`Stack de ${title}`}>
+    {stack.map((tech) => (
+      <span class="badge badge-accent">{tech}</span>
+    ))}
+  </div>
+
+  <!-- Frase do problema resolvido -->
+  {
+    problem && (
+      <div class="mb-6 pl-3 border-l-2 border-modern-accent/40 flex-1">
+        <p class="text-xs font-mono text-modern-muted uppercase tracking-wide mb-1">
+          Problema resolvido
+        </p>
+        <p class="text-sm text-modern-text/80 leading-relaxed">{problem}</p>
+      </div>
+    )
+  }
+
+  <!-- Ações: Ver repositório + Testar -->
+  <div class="flex items-center gap-4 mt-auto">
+    <!-- Ver repositório -->
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 text-modern-accent hover:text-modern-accent2 transition-colors duration-240 font-medium text-sm"
+      aria-label={`Ver repositório de ${title} (abre em nova aba)`}
     >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-    </svg>
-  </a>
+      Ver repositório
+      <svg
+        class="w-4 h-4 transition-transform duration-240 group-hover:translate-x-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+      </svg>
+    </a>
+
+    <!-- Botão Testar: ativo se testUrl estiver definido, caso contrário desativado com tooltip -->
+    {
+      hasTestUrl ? (
+        <a
+          href={testUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 text-modern-accent2 hover:text-modern-text border border-modern-accent2/40 hover:border-modern-accent2 transition-all duration-240 font-medium text-sm px-3 py-1 rounded"
+          aria-label={`Testar ${title} ao vivo (abre em nova aba)`}
+        >
+          Testar
+          <!-- Ícone: quadrado com seta saindo (external link) -->
+          <svg
+            class="w-3.5 h-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+        </a>
+      ) : (
+        /* Botão desativado: cursor not-allowed + tooltip "Em desenvolvimento" no hover/focus */
+        <button
+          type="button"
+          disabled
+          title="Em desenvolvimento"
+          aria-label={`Testar ${title} — Em desenvolvimento`}
+          class="inline-flex items-center gap-1.5 text-modern-muted border border-modern-border font-medium text-sm px-3 py-1 rounded cursor-not-allowed opacity-50 select-none"
+        >
+          Testar
+          <svg
+            class="w-3.5 h-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+        </button>
+      )
+    }
+  </div>
 </article>

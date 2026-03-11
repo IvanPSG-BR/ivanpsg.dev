@@ -7,9 +7,11 @@
  * - Hero (apresentação)
  * - About (sobre mim)
  * - Projects (projetos)
- * - Carousel (certificados)
  * - Contact (contato)
  * - Footer
+ *
+ * Nota: Carousel (certificados) removido temporariamente.
+ * O componente src/components/Carousel.astro está preservado para reuso futuro.
  */
 
 import Base from "../layouts/Base.astro";
@@ -17,7 +19,6 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
 import Projects from "../components/Projects.astro";
-import Carousel from "../components/Carousel.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 ---
@@ -37,9 +38,6 @@ import Footer from "../components/Footer.astro";
 
   <!-- Projetos em destaque -->
   <Projects />
-
-  <!-- Carrossel de certificados -->
-  <Carousel />
 
   <!-- Formulário de contato -->
   <Contact />
