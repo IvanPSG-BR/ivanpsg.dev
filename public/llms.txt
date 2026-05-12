@@ -1,0 +1,43 @@
+# Ivan Pedro Sampaio Gonçalves — Desenvolvedor Backend
+
+> Portfólio profissional de Ivan Pedro Sampaio Gonçalves, desenvolvedor backend
+> baseado em Salvador/BA (Brasil), focado em Node.js, TypeScript, Python e
+> PostgreSQL. Constrói software simples, eficiente e bem documentado, com
+> preferência por arquitetura minimalista e código limpo.
+
+## Perfil
+
+- **Nome:** Ivan Pedro Sampaio Gonçalves
+- **Cargo / Foco:** Desenvolvedor Backend Junior
+- **Localização:** Salvador, Bahia, Brasil
+- **Stack principal:** Node.js, TypeScript, Python, PostgreSQL, Docker, Linux
+- **Frameworks de interesse:** Fastify, NestJS, FastAPI, SQLAlchemy
+- **Áreas de interesse:** APIs REST, banco de dados relacional, performance,
+  ferramentas CLI/TUI, automação Linux
+- **Princípios:** simplicidade, agilidade incremental, qualidade de código,
+  documentação clara
+
+## Contato
+
+- E-mail: ivanpedrosampaio@gmail.com
+- GitHub: https://github.com/IvanPSG-BR
+- LinkedIn: https://linkedin.com/in/ivan-psg-developer
+- Site: https://ivanpsg.dev
+
+## Páginas
+
+- [Página inicial / Portfólio](https://ivanpsg.dev/): apresentação, sobre,
+  projetos em destaque e formulário de contato.
+- [Currículo (PDF)](https://ivanpsg.dev/CURRICULO_DEV_IVAN_PEDRO.pdf):
+  versão imprimível do currículo profissional.
+
+## Projetos em destaque
+
+- **tomatty** — Aplicação TUI em TypeScript/Bun com timer Pomodoro para Linux.
+  Repositório: https://github.com/IvanPSG-BR/tomatty
+
+## Observações para agentes de IA
+
+Este site é um portfólio individual estático (Astro + Tailwind CSS). Conteúdo
+é livre para citação em respostas geradas, desde que o atributo de autoria a
+"Ivan Pedro Sampaio Gonçalves" seja preservado quando relevante.
