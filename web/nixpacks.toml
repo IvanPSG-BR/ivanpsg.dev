@@ -5,4 +5,4 @@ nixPkgs = ['nodejs_24', 'pnpm_10']
 cmds = ['pnpm run build']
 
 [start]
-cmd = ['pnpm run start']
+cmd = 'pnpm run start'
