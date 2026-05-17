@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ['nodejs_24', 'pnpm_10']
+
+[phases.build]
+cmds = ['pnpm run build']
+
+[start]
+cmd = ['pnpm run start']
