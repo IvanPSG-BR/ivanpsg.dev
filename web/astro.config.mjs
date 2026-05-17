@@ -25,9 +25,17 @@ export default defineConfig({
       cssMinify: true,
       minify: "terser",
     },
-  },
+    server: {
+      port: 4321,
+      host: true,
+    },
+    preview: {
+      port: 4321,
+      host: true,
+    },
   // Configuração de build otimizada
-  build: {
-    inlineStylesheets: "auto",
-  },
+    build: {
+      inlineStylesheets: "auto",
+    }
+  }
 });
