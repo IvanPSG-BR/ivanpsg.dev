@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['nodejs-slim', 'pnpm']
+nixPkgs = ['nodePackages.nodejs', 'pnpm']
 
 [phases.build]
 cmds = ['pnpm run build']
