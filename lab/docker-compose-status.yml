@@ -1,0 +1,61 @@
+services:
+    # ---------------------------------------------------------------------------
+    # Redis — required for BullMQ queues, caching, and scheduler
+    # ---------------------------------------------------------------------------
+    redis:
+        image: redis:7-alpine
+        restart: unless-stopped
+        volumes:
+            - ./redis_data:/data
+        healthcheck:
+            test: ["CMD", "redis-cli", "ping"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.33'
+                    memory: 256M
+
+  # ---------------------------------------------------------------------------
+  # Kener — Status Page Application
+  # ---------------------------------------------------------------------------
+    kener:
+        image: rajnandan1/kener:latest
+        # For Alpine variant use: rajnandan1/kener:alpine
+        environment:
+            # ── Required ──
+            KENER_SECRET_KEY: ${KENER_SECRET_KEY} # generate: openssl rand -base64 32
+            ORIGIN: ${ORIGIN} # public URL of your Kener instance (required for CSRF protection)
+            REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+
+            # ── Database (default: SQLite) ──
+            # DATABASE_URL: sqlite://./database/kener.sqlite.db
+            # DATABASE_URL: postgresql://user:password@postgres:5432/kener
+            # DATABASE_URL: mysql://user:password@mysql:3306/kener
+    
+        ports:
+            - "3330:3000"
+        volumes:
+            - ./data:/app/database
+        depends_on:
+            redis:
+                condition: service_healthy
+        restart: unless-stopped
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.33'
+                    memory: 256M
+    tunnel:
+        image: cloudflare/cloudflared:latest
+        restart: unless-stopped
+        network_mode: host
+        command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+
+volumes:
+    data:
+        name: db
+    redis_data:
+        name: redis
