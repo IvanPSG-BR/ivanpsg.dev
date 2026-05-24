@@ -1,0 +1,61 @@
+services:
+    omniroute:
+        ports:
+            - 20128:20128
+            - 20130:20130
+            - 20131:20131
+        networks:
+            - internal
+        image: diegosouzapw/omniroute:latest
+        restart: unless-stopped
+        volumes:
+          - omniroute-data:/app/data
+        environment:
+              PROD_DASHBOARD_PORT: 20130
+              PROD_API_PORT: 20131
+              BASE_URL: ${OMNIROUTE_BASE_URL}
+              NEXT_PUBLIC_BASE_URL: ${OMNIROUTE_BASE_URL}
+              OMNIROUTE_PUBLIC_BASE_URL: ${OMNIROUTE_BASE_URL}
+              AUTH_COOKIE_SECURE: true
+              REQUIRE_API_KEY: true
+              CORS_ORIGIN: ${OMNIROUTE_CORS_ORIGIN}
+              JWT_SECRET: ${OMNIROUTE_JWT_SECRET}
+              API_KEY_SECRET: ${OMNIROUTE_API_KEY_SECRET}
+              OMNIROUTE_WS_BRIDGE_SECRET: ${OMNIROUTE_WS_BRIDGE_SECRET}
+              INITIAL_PASSWORD: ${OMNIROUTE_INITIAL_PASSWORD}
+        
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.50'
+                    memory: 256M
+    qwenproxy:
+        image: ivanpsg/qwenproxy:local
+        ports:
+            - ${PORT}:20099
+        networks:
+            - internal
+        environment:
+            # BASE_URL: ${QWENPROXY_BASE_URL}
+            API_KEY: ${QWENPROXY_API_KEY}
+            QWEN_EMAIL: ${QWEN_EMAIL}
+            QWEN_PASSWORD: ${QWEN_PASSWORD}
+        volumes:
+            - ./qwen-profile:/app/qwen_profile
+        restart: always
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.50'
+                    memory: 256M
+    tunnel:
+        image: cloudflare/cloudflared:latest
+        restart: unless-stopped
+        network_mode: host
+        command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+networks:
+    internal:
+    external:
+volumes:
+    omniroute-data:
+    qwen-profile:

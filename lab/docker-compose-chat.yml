@@ -1,0 +1,54 @@
+services:
+    main:
+        ports:
+            - 8088:8080
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        networks:
+            - internal
+        volumes:
+            - ./open-webui:/app/backend/data
+        environment:
+              CORS_ALLOW_ORIGIN: ${CORS_ALLOW_ORIGIN}
+              DATABASE_URL: ${DATABASE_URL}
+              DATABASE_POOL_SIZE: ${DATABASE_POOL_SIZE}
+              DATABASE_POOL_MAX_OVERFLOW: ${DATABASE_POOL_MAX_OVERFLOW}
+              WEBUI_URL: ${WEBUI_URL}
+              ENABLE_WEBSOCKET_SUPPORT: true
+              WEBUI_SESSION_COOKIE_SECURE: true
+              VECTOR_DB: ${VECTOR_DB}
+              PGVECTOR_DB_URL: ${PGVECTOR_DB_URL}
+              PGVECTOR_CREATE_EXTENSION: false # ADICIONAR A EXTENSÃO `PGVECTOR` PREVIAMENTE!
+        restart: always
+        image: ghcr.io/open-webui/open-webui:main
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.75'
+                    memory: 768M
+    paddleocr:
+        image: blazordevlab/paddleocrapi:latest
+        networks:
+           - internal
+        environment:
+              TZ: America/Bahia
+              OCR_LANGUAGE: latin
+        ports:
+           - 8090:8000
+        restart: unless-stopped
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.50'
+                    memory: 512M
+    tunnel:
+        image: cloudflare/cloudflared:latest
+        restart: unless-stopped
+        network_mode: host
+        command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+networks:
+    internal:
+         driver: bridge
+    external:
+volumes:
+    open-webui:

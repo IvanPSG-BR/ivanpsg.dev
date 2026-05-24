@@ -1,0 +1,19 @@
+services:
+    wiki-go:
+        image: leomoonstudios/wiki-go:latest
+        container_name: wiki-go
+        ports:
+            - "8880:8080"
+        volumes:
+            - ./docs-data:/wiki/data
+        restart: unless-stopped
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.25'
+                    memory: 256M
+    tunnel:
+        image: cloudflare/cloudflared:latest
+        restart: unless-stopped
+        network_mode: host
+        command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
