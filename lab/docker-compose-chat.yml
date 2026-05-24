@@ -45,7 +45,7 @@ services:
         image: cloudflare/cloudflared:latest
         restart: unless-stopped
         network_mode: host
-        command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+        command: tunnel --no-autoupdate run --token $${project.CLOUDFLARED_TOKEN}
 networks:
     internal:
          driver: bridge
