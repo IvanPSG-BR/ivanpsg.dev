@@ -14,7 +14,7 @@ export default defineConfig({
         defaultLocale: "pt-BR",
         locales: { "pt-BR": "pt-BR" },
       },
-      changefreq: "monthly",
+      changefreq: "weekly",
       priority: 0.8,
       lastmod: new Date(),
     }),

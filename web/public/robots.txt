@@ -68,4 +68,4 @@ User-agent: YouBot
 Allow: /
 
 # Sitemap (gerado por @astrojs/sitemap em build time)
-Sitemap: https://ivanpsg.dev/sitemap.xml
+Sitemap: https://ivanpsg.dev/sitemap-index.xml
