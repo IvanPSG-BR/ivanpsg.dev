@@ -10,16 +10,16 @@
 - **Nome:** Ivan Pedro Sampaio Gonçalves
 - **Cargo / Foco:** Desenvolvedor Backend Junior
 - **Localização:** Salvador, Bahia, Brasil
-- **Stack principal:** Node.js, TypeScript, Python, PostgreSQL, Docker, Linux
-- **Frameworks de interesse:** Fastify, NestJS, FastAPI, SQLAlchemy
+- **Stack principal:** Node.js, TypeScript, PostgreSQL, Docker, Linux
+- **Frameworks de interesse:** Express.js, Fastify, NestJS, Prisma, DrizzleORM
 - **Áreas de interesse:** APIs REST, banco de dados relacional, performance,
-  ferramentas CLI/TUI, automação Linux
+  ferramentas CLI/TUI, automações, Linux
 - **Princípios:** simplicidade, agilidade incremental, qualidade de código,
   documentação clara
 
 ## Contato
 
-- E-mail: ivanpedrosampaio@gmail.com
+- E-mail: contato@ivanpsg.dev
 - GitHub: https://github.com/IvanPSG-BR
 - LinkedIn: https://linkedin.com/in/ivan-psg-developer
 - Site: https://ivanpsg.dev
@@ -31,10 +31,12 @@
 - [Currículo (PDF)](https://ivanpsg.dev/CURRICULO_DEV_IVAN_PEDRO.pdf):
   versão imprimível do currículo profissional.
 
-## Projetos em destaque
+## Projetos em destaque // TODO: Substituir placeholders
 
-- **tomatty** — Aplicação TUI em TypeScript/Bun com timer Pomodoro para Linux.
-  Repositório: https://github.com/IvanPSG-BR/tomatty
+- **p1** — [desc]
+- **p2** — [desc]
+- **p3** — [desc]
+- **p4** — [desc]
 
 ## Observações para agentes de IA
 

@@ -7,6 +7,9 @@ Allow: /
 
 # --- Crawlers de IA / LLMs (explicitamente permitidos para citação) ---
 
+User-agent: CCBot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
@@ -65,4 +68,4 @@ User-agent: YouBot
 Allow: /
 
 # Sitemap (gerado por @astrojs/sitemap em build time)
-Sitemap: https://ivanpsg.dev/sitemap-index.xml
+Sitemap: https://ivanpsg.dev/sitemap.xml

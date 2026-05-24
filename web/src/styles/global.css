@@ -55,7 +55,7 @@
 
   /* Spacing e Layout */
   --container-max-width: 1280px;
-  --spacing-section: 6rem;
+  --spacing-section: 3rem;
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -276,14 +276,14 @@
 
 /* Seção padrão com spacing */
 .section {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
   .section {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }
 
