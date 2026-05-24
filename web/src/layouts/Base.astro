@@ -41,6 +41,9 @@ const ogImageURL = new URL(ogImage, Astro.site).toString();
 // Long-tail keywords — combina padrão + extras passadas pela página
 const defaultKeywords = [
   "Ivan Pedro Sampaio Gonçalves",
+  "Ivan Pedro",
+  "Ivan programador",
+  "Ivan desenvolvedor",
   "Ivan Pedro desenvolvedor",
   "ivanpsg",
   "desenvolvedor backend",
@@ -53,11 +56,9 @@ const defaultKeywords = [
   "desenvolvedor Node.js",
   "desenvolvedor Node.js TypeScript",
   "desenvolvedor TypeScript",
-  "desenvolvedor Python",
   "desenvolvedor PostgreSQL",
   "desenvolvedor Fastify",
   "desenvolvedor NestJS",
-  "desenvolvedor FastAPI",
   "desenvolvedor APIs REST",
   "desenvolvedor APIs Node.js",
   "desenvolvedor full stack iniciante",
@@ -80,15 +81,15 @@ const allKeywords = Array.from(new Set([...defaultKeywords, ...keywords])).join(
 const personLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "https://ivanpsg.dev/#ivan-pedro",
+  "@id": "https://ivanpsg.dev/#hero",
   name: "Ivan Pedro Sampaio Gonçalves",
   alternateName: ["Ivan Pedro", "ivanpsg"],
   url: "https://ivanpsg.dev",
   image: new URL("/ivan_profissional.png", Astro.site).toString(),
   jobTitle: "Desenvolvedor Backend",
   description:
-    "Desenvolvedor backend em Salvador/BA, focado em Node.js, TypeScript, Python e PostgreSQL.",
-  email: "mailto:ivanpedrosampaio@gmail.com",
+    "Desenvolvedor backend em Salvador/BA, focado em Node.js, TypeScript e PostgreSQL.",
+  email: "mailto:contato@ivanpsg.dev",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Salvador",
@@ -98,11 +99,9 @@ const personLd = {
   knowsAbout: [
     "Node.js",
     "TypeScript",
-    "Python",
     "PostgreSQL",
     "Fastify",
     "NestJS",
-    "FastAPI",
     "Docker",
     "Linux",
     "APIs REST",
@@ -118,14 +117,14 @@ const personLd = {
 const websiteLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://ivanpsg.dev/#website",
+  "@id": "https://ivanpsg.dev/",
   url: "https://ivanpsg.dev",
   name: "ivanpsg.dev",
   description:
     "Portfólio profissional de Ivan Pedro Sampaio Gonçalves, desenvolvedor backend.",
   inLanguage: "pt-BR",
-  author: { "@id": "https://ivanpsg.dev/#ivan-pedro" },
-  publisher: { "@id": "https://ivanpsg.dev/#ivan-pedro" },
+  author: { "@id": "https://ivanpsg.dev/#hero" },
+  publisher: { "@id": "https://ivanpsg.dev/#hero" },
 };
 
 const profilePageLd = {
@@ -135,7 +134,7 @@ const profilePageLd = {
   name: title,
   description,
   inLanguage: "pt-BR",
-  mainEntity: { "@id": "https://ivanpsg.dev/#ivan-pedro" },
+  mainEntity: { "@id": "https://ivanpsg.dev/#hero" },
 };
 ---
 
@@ -184,7 +183,7 @@ const profilePageLd = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Sitemap (referência explícita para crawlers) -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
     <!-- Preconnect para Google Fonts (performance) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -201,7 +200,7 @@ const profilePageLd = {
 
   <body>
     <!-- Skip to content link para screen readers -->
-    <a href="#main-content" class="skip-to-content">
+    <a href="/#aboutme" class="skip-to-content">
       Pular para o conteúdo principal
     </a>
 
