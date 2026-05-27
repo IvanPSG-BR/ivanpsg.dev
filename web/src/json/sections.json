@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "tagId": "hero",
+    "titleId": "hero-title",
+    "commandLabel": "whoami",
+    "title": "Ivan Pedro Sampaio Gonçalves"
+  },
+  "about": {
+    "tagId": "aboutme",
+    "titleId": "about-title",
+    "commandLabel": "ivanpsg-cli aboutme",
+    "title": "Sobre mim",
+    "titlePrefix": "Sobre",
+    "titleAccent": "mim"
+  },
+  "projects": {
+    "tagId": "projects",
+    "titleId": "projects-title",
+    "commandLabel": "ivanpsg-cli projects",
+    "title": "Projetos em Destaque",
+    "titlePrefix": "Projetos em",
+    "titleAccent": "Destaque"
+  },
+  "contact": {
+    "tagId": "contact",
+    "titleId": "contact-title",
+    "commandLabel": "ivanpsg-cli contact",
+    "title": "Entre em Contato",
+    "titlePrefix": "Entre em",
+    "titleAccent": "Contato"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "about": {
+    "principles": [
+      {
+        "title": "Agilidade",
+        "description": "Entrega primeiro, melhorias incrementais",
+        "icon": "lightning"
+      },
+      {
+        "title": "Simplicidade",
+        "description": "Soluções claras sem complexidade desnecessária",
+        "icon": "clipboard"
+      },
+      {
+        "title": "Qualidade",
+        "description": "Documentação e código limpo sempre",
+        "icon": "checkCircle"
+      }
+    ]
+  },
+  "carousel": {
+    "certificates": [
+      {
+        "title": "Certificado Placeholder 1",
+        "issuer": "Plataforma Online",
+        "date": "2XXX",
+        "image": "/certificates/cert1.jpg"
+      },
+      {
+        "title": "Certificado Placeholder 2",
+        "issuer": "Plataforma Online",
+        "date": "2XXX",
+        "image": "/certificates/cert2.jpg"
+      },
+      {
+        "title": "Certificado Placeholder 3",
+        "issuer": "Plataforma Online",
+        "date": "2XXX",
+        "image": "/certificates/cert3.jpg"
+      }
+    ]
+  }
+}

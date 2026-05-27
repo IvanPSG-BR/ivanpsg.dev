@@ -10,30 +10,14 @@
  * - Suporte a teclado
  */
 
-// Dados dos certificados (placeholder com 2XXX)
-const certificates = [
-  {
-    title: 'Certificado Placeholder 1',
-    issuer: 'Plataforma Online',
-    date: '2XXX',
-    image: '/certificates/cert1.jpg',
-  },
-  {
-    title: 'Certificado Placeholder 2',
-    issuer: 'Plataforma Online',
-    date: '2XXX',
-    image: '/certificates/cert2.jpg',
-  },
-  {
-    title: 'Certificado Placeholder 3',
-    issuer: 'Plataforma Online',
-    date: '2XXX',
-    image: '/certificates/cert3.jpg',
-  },
-];
+import cards from "../json/cards.json";
+import icons from "../json/icons.json";
+
+const certificates = cards.carousel.certificates;
+const certificateIcon = icons.carousel.certificate;
 ---
 
-<section 
+<section
   id="certificados"
   class="section bg-modern-surface"
   aria-labelledby="carousel-title"
@@ -41,7 +25,7 @@ const certificates = [
   <div class="container-custom">
     <!-- Título da seção -->
     <div class="text-center mb-12">
-      <h2 
+      <h2
         id="carousel-title"
         class="text-3xl md:text-4xl font-bold text-modern-text mb-4"
       >
@@ -78,14 +62,14 @@ const certificates = [
                     class="w-8 h-8 text-modern-accent" 
                     fill="none" 
                     stroke="currentColor" 
-                    viewBox="0 0 24 24"
+                    viewBox={certificateIcon.viewBox}
                     aria-hidden="true"
                   >
                     <path 
                       stroke-linecap="round" 
                       stroke-linejoin="round" 
                       stroke-width="2" 
-                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                      d={certificateIcon.path}
                     />
                   </svg>
                 </div>
@@ -173,66 +157,5 @@ const certificates = [
 </section>
 
 <script>
-  // Carrossel logic
-  const track = document.getElementById('carousel-track');
-  const prevBtn = document.getElementById('carousel-prev');
-  const nextBtn = document.getElementById('carousel-next');
-  const dots = document.querySelectorAll('.carousel-dot');
-  
-  let currentIndex = 0;
-  const totalSlides = dots.length;
-  
-  function updateCarousel() {
-    if (!track) return;
-    
-    // Atualizar transform do track
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    
-    // Atualizar dots
-    dots.forEach((dot, index) => {
-      if (index === currentIndex) {
-        dot.classList.add('bg-modern-accent', 'w-8');
-        dot.classList.remove('bg-modern-border');
-        dot.setAttribute('aria-selected', 'true');
-      } else {
-        dot.classList.remove('bg-modern-accent', 'w-8');
-        dot.classList.add('bg-modern-border');
-        dot.setAttribute('aria-selected', 'false');
-      }
-    });
-  }
-  
-  function goToSlide(index: number) {
-    currentIndex = (index + totalSlides) % totalSlides;
-    updateCarousel();
-  }
-  
-  // Event listeners
-  prevBtn?.addEventListener('click', () => {
-    goToSlide(currentIndex - 1);
-  });
-  
-  nextBtn?.addEventListener('click', () => {
-    goToSlide(currentIndex + 1);
-  });
-  
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      goToSlide(index);
-    });
-  });
-  
-  // Suporte a teclado
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      goToSlide(currentIndex - 1);
-    } else if (e.key === 'ArrowRight') {
-      goToSlide(currentIndex + 1);
-    }
-  });
-  
-  // Auto-play opcional (descomentarara ativar)
-  // setInterval(() => {
-  //   goToSlide(currentIndex + 1);
-  // }, 5000);
+  import "../scripts/carousel.js";
 </script>

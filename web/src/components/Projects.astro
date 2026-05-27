@@ -11,15 +11,16 @@
  */
 
 import ProjectCard from "./ProjectCard.astro";
+import sections from "../json/sections.json";
+
+const projectsSection = sections.projects;
 
 // Dados dos projetos
 const projects = [
   {
     title: "p1",
-    description:
-      "placeholder",
-    problem:
-      "placeholder",
+    description: "placeholder",
+    problem: "placeholder",
     stack: ["Node.js", "Fastify", "PostgreSQL", "Zod"],
     link: "placeholder",
     thumbnail: undefined,
@@ -30,10 +31,8 @@ const projects = [
   },
   {
     title: "p2",
-    description:
-      "placeholder",
-    problem:
-      "placeholder",
+    description: "placeholder",
+    problem: "placeholder",
     stack: ["NestJS", "Vue.js", "LocalStorage", "Docker"],
     link: "placeholder",
     thumbnail: undefined,
@@ -41,10 +40,8 @@ const projects = [
   },
   {
     title: "p3",
-    description:
-      "placeholder",
-    problem:
-      "placeholder",
+    description: "placeholder",
+    problem: "placeholder",
     stack: ["Typescript", "TUI", "Linux", "bun"],
     link: "https://github.com/IvanPSG-BR/tomatty",
     thumbnail: undefined,
@@ -52,10 +49,8 @@ const projects = [
   },
   {
     title: "p4",
-    description:
-      "placeholder",
-    problem:
-      "placeholder",
+    description: "placeholder",
+    problem: "placeholder",
     stack: ["Python", "FastAPI", "pgvector", "SQLAlchemy"],
     link: "placeholder",
     thumbnail: undefined,
@@ -65,16 +60,16 @@ const projects = [
 ---
 
 <section
-  id="projects"
+  id={projectsSection.tagId}
   class="section bg-modern-bg"
-  aria-labelledby="projects-title"
+  aria-labelledby={projectsSection.titleId}
   data-terminal-section
 >
   <div class="container-custom">
     <!-- Terminal prompt title — data-terminal-command define o texto a ser digitado -->
     <p
       class="font-mono text-sm md:text-base text-modern-muted mb-8"
-      data-terminal-command="ivanpsg-cli projects"
+      data-terminal-command={projectsSection.commandLabel}
     >
       <span class="text-modern-accent">ivanpsg@portifolio</span>:<span
         class="text-modern-accent2">~</span
@@ -90,10 +85,10 @@ const projects = [
       <!-- Título da seção -->
       <div class="mb-12">
         <h2
-          id="projects-title"
+          id={projectsSection.titleId}
           class="text-3xl md:text-4xl font-bold text-modern-text mb-4"
         >
-          Projetos em <span class="text-modern-accent2">Destaque</span>
+          {projectsSection.titlePrefix} <span class="text-modern-accent2">{projectsSection.titleAccent}</span>
         </h2>
         <p class="text-lg text-modern-muted max-w-2xl">
           Seleção de projetos que demonstram minhas habilidades em backend,

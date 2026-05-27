@@ -6,19 +6,32 @@
  * Efeito terminal: ao entrar na viewport, o comando "about" é digitado
  * e o conteúdo da seção é revelado com transição leve.
  */
+
+import cards from "../json/cards.json";
+import icons from "../json/icons.json";
+import sections from "../json/sections.json";
+
+type SvgIcon = {
+  viewBox: string;
+  path: string;
+};
+
+const aboutSection = sections.about;
+const principles = cards.about.principles;
+const principleIcons = icons.about.principles as Record<string, SvgIcon>;
 ---
 
 <section
-  id="aboutme"
+  id={aboutSection.tagId}
   class="section bg-modern-surface"
-  aria-labelledby="about-title"
+  aria-labelledby={aboutSection.titleId}
   data-terminal-section
 >
   <div class="container-custom">
     <!-- Terminal prompt title — data-terminal-command define o texto a ser digitado -->
     <p
       class="font-mono text-sm md:text-base text-modern-muted mb-8"
-      data-terminal-command="ivanpsg-cli aboutme"
+      data-terminal-command={aboutSection.commandLabel}
     >
       <span class="text-modern-accent">ivanpsg@portifolio</span>:<span
         class="text-modern-accent2">~</span
@@ -33,10 +46,10 @@
     <div class="section-content">
       <!-- Título da seção -->
       <h2
-        id="about-title"
+        id={aboutSection.titleId}
         class="text-3xl md:text-4xl font-bold text-modern-text mb-12"
       >
-        Sobre <span class="text-modern-accent2">mim</span>
+        {aboutSection.titlePrefix} <span class="text-modern-accent2">{aboutSection.titleAccent}</span>
       </h2>
 
       <!-- Texto principal -->
@@ -65,90 +78,40 @@
         </h3>
 
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="card">
-            <div class="flex items-start gap-4">
-              <div
-                class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
-              >
-                <svg
-                  class="w-5 h-5 text-modern-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-modern-text mb-2">Agilidade</h4>
-                <p class="text-sm text-modern-muted">
-                    Entrega primeiro, melhorias incrementais
-                </p>
-              </div>
-            </div>
-          </div>
+          {
+            principles.map((principle) => {
+              const icon = principleIcons[principle.icon];
 
-          <div class="card">
-            <div class="flex items-start gap-4">
-              <div
-                class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
-              >
-                <svg
-                  class="w-5 h-5 text-modern-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                  ></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-modern-text mb-2">Simplicidade</h4>
-                <p class="text-sm text-modern-muted">
-                  Soluções claras sem complexidade desnecessária
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="flex items-start gap-4">
-              <div
-                class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center"
-              >
-                <svg
-                  class="w-5 h-5 text-modern-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-modern-text mb-2">Qualidade</h4>
-                <p class="text-sm text-modern-muted">
-                  Documentação e código limpo sempre
-                </p>
-              </div>
-            </div>
-          </div>
+              return (
+                <div class="card">
+                  <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center">
+                      <svg
+                        class="w-5 h-5 text-modern-accent"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox={icon.viewBox}
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d={icon.path}
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-modern-text mb-2">{principle.title}</h4>
+                      <p class="text-sm text-modern-muted">
+                        {principle.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
     </div>

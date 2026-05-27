@@ -1,11 +1,17 @@
+import "dotenv/config";
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import { configDotenv } from "dotenv";
+
+configDotenv()
+const baseDomain = process.env.BASE_DOMAIN ?? "ivanpsg.dev"
+const siteUrl = `https://${baseDomain}`;
 
 // https://astro.build/config
 export default defineConfig({
   // URL canônica usada para sitemap, OG tags e tags absolutas
-  site: "https://ivanpsg.dev",
+  site: siteUrl,
   trailingSlash: "ignore",
   integrations: [
     sitemap({
