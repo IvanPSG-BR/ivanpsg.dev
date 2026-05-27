@@ -39,13 +39,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: pnpm
-          cache-dependency-path: ${{ env.BUILD_PATH }}/pnpm-lock.yaml
+          cache: npm
+          cache-dependency-path: ${{ env.BUILD_PATH }}/package-lock.json
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
         run: |
