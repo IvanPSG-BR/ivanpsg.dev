@@ -16,9 +16,9 @@
  */
 
 // Velocidade base de digitação em ms por caractere (mais lento = mais natural)
-const TYPING_SPEED = 95;
+const TYPING_SPEED = 60;
 // Variação aleatória por caractere para simular ritmo humano (±ms)
-const TYPING_JITTER = 50;
+const TYPING_JITTER = 35;
 // Atraso entre fim da digitação e reveal do conteúdo (ms)
 const REVEAL_DELAY = 280;
 
