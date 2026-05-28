@@ -44,74 +44,79 @@ const principleIcons = icons.about.principles as Record<string, SvgIcon>;
 
     <!-- Conteúdo revelado após a digitação do comando -->
     <div class="section-content">
-      <!-- Título da seção -->
-      <h2
-        id={aboutSection.titleId}
-        class="text-3xl md:text-4xl font-bold text-modern-text mb-12"
-      >
-        {aboutSection.titlePrefix} <span class="text-modern-accent2">{aboutSection.titleAccent}</span>
-      </h2>
+      <!-- Layout em 2 colunas (md+): texto à esquerda, princípios à direita,
+           separados por uma borda vertical cinza. No mobile, empilham. -->
+      <div class="grid md:grid-cols-2 gap-10 md:gap-12">
+        <!-- Coluna esquerda: título + texto principal -->
+        <div class="md:pr-12 md:border-r md:border-modern-border">
+          <h2
+            id={aboutSection.titleId}
+            class="text-3xl md:text-4xl font-bold text-modern-text mb-8"
+          >
+            {aboutSection.titlePrefix} <span class="text-modern-accent2">{aboutSection.titleAccent}</span>
+          </h2>
 
-      <!-- Texto principal -->
-      <div class="space-y-4 mb-16 flex flex-col">
-        <p
-          class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
-        >
-            Sou um desenvolvedor em formação com foco em <strong>Backend e Infraestrutura</strong>, cursando <em>Sistemas da Informação</em> em Salvador/BA. Com <strong>perfil autodidata</strong> e <strong>alta adaptabilidade</strong>, sou movido pela <em>resolução de problemas complexos e pela melhoria contínua</em> dos processos
-        </p>
-        <p
-          class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
-        >
-            Tenho domínio em <strong>ambientes Linux</strong>, containerização com <strong>Docker</strong> e desenvolvimento com <em>Node.js e TypeScript</em>. Acredito que a excelência técnica se constrói através de <strong>documentação rigorosa</strong>, <strong>análise de falhas</strong> e a busca constante por gerar <strong>valor real</strong> ao usuário final e ao negócio
-        </p>
-        <p
-          class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
-        >
-            Estou em busca de oportunidades onde possa aplicar meu pensamento analítico e colaborar em projetos inovadores e desafiadores.
-        </p>
-      </div>
+          <div class="space-y-4 flex flex-col">
+            <p
+              class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
+            >
+                Sou um desenvolvedor em formação com foco em <strong>Backend e Infraestrutura</strong>, cursando <em>Sistemas da Informação</em> em Salvador/BA. Com <strong>perfil autodidata</strong> e <strong>alta adaptabilidade</strong>, sou movido pela <em>resolução de problemas complexos e pela melhoria contínua</em> dos processos
+            </p>
+            <p
+              class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
+            >
+                Tenho domínio em <strong>ambientes Linux</strong>, containerização com <strong>Docker</strong> e desenvolvimento com <em>Node.js e TypeScript</em>. Acredito que a excelência técnica se constrói através de <strong>documentação rigorosa</strong>, <strong>análise de falhas</strong> e a busca constante por gerar <strong>valor real</strong> ao usuário final e ao negócio
+            </p>
+            <p
+              class="text-base md:text-lg text-modern-muted leading-relaxed text-justify"
+            >
+                Estou em busca de oportunidades onde possa aplicar meu pensamento analítico e colaborar em projetos inovadores e desafiadores.
+            </p>
+          </div>
+        </div>
 
-      <!-- Princípios & Valores -->
-      <div>
-        <h3 class="text-2xl font-bold text-modern-text mb-6">
-          Princípios & Valores
-        </h3>
+        <!-- Coluna direita: Princípios & Valores empilhados verticalmente -->
+        <div class="flex flex-col justify-center">
+          <h3 class="text-2xl font-bold text-modern-text mb-6">
+            Princípios & Valores
+          </h3>
 
-        <div class="grid md:grid-cols-3 gap-6">
-          {
-            principles.map((principle) => {
-              const icon = principleIcons[principle.icon];
+          <div class="flex flex-col gap-6">
+            {
+              principles.map((principle) => {
+                const icon = principleIcons[principle.icon];
 
-              return (
-                <div class="card">
-                  <div class="flex items-start gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center">
-                      <svg
-                        class="w-5 h-5 text-modern-accent"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox={icon.viewBox}
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d={icon.path}
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 class="font-bold text-modern-text mb-2">{principle.title}</h4>
-                      <p class="text-sm text-modern-muted">
-                        {principle.description}
-                      </p>
+                return (
+                  <div class="card">
+                    <div class="flex items-start gap-4">
+                      <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-modern-accent/10 border border-modern-accent flex items-center justify-center">
+                        <svg
+                          class="w-5 h-5 text-modern-accent"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox={icon.viewBox}
+                          aria-hidden="true"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d={icon.path}
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-modern-text mb-2">{principle.title}</h4>
+                        <p class="text-sm text-modern-muted">
+                          {principle.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
-          }
+                );
+              })
+            }
+          </div>
         </div>
       </div>
     </div>

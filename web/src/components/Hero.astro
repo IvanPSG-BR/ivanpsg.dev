@@ -41,9 +41,13 @@ const photoPath = import.meta.env.PRO_PHOTO_PATH ?? "/ivan_profissional.png"
 
       <!-- Conteúdo revelado após a digitação do comando -->
       <div class="section-content w-full flex flex-col items-center gap-8">
-        <!-- Foto do perfil -->
-        <div class="flex-shrink-0">
+        <!-- Foto do perfil + citação interativa -->
+        <div
+          id="photo-interactive"
+          class="flex-shrink-0 flex flex-col items-center gap-0 w-60"
+        >
           <img
+            id="hero-photo"
             src={photoPath}
             alt="Foto profissional de Ivan Pedro Sampaio Gonçalves, desenvolvedor backend em Salvador/BA"
             width="1840"
@@ -51,8 +55,20 @@ const photoPath = import.meta.env.PRO_PHOTO_PATH ?? "/ivan_profissional.png"
             loading="eager"
             fetchpriority="high"
             decoding="async"
-            class="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-modern-accent2 bg-modern-surface/60 object-cover"
+            class="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-modern-accent2 bg-modern-surface/60 object-cover transition-transform duration-300 ease-in-out"
           />
+
+          <!-- Citação: aparece com fade-in abaixo da foto no hover/toque -->
+          <div
+            id="hero-quote-container"
+            class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out w-80 md:w-96"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <blockquote class="italic text-sm text-modern-muted leading-relaxed text-center px-2 pt-3">
+              <p id="hero-quote-text"></p>
+            </blockquote>
+          </div>
         </div>
 
         <!-- Conteúdo textual -->
@@ -128,3 +144,7 @@ const photoPath = import.meta.env.PRO_PHOTO_PATH ?? "/ivan_profissional.png"
     </div>
   </div>
 </section>
+
+<script>
+  import '../scripts/quote-engine.js';
+</script>
