@@ -14,6 +14,8 @@
  *                Se ausente/undefined, o botão fica desativado com tooltip "Em desenvolvimento".
  */
 
+import icons from "../json/icons.json";
+
 interface Props {
   title: string;
   description: string;
@@ -28,6 +30,7 @@ const { title, description, problem, stack, link, thumbnail, testUrl } = Astro.p
 
 // Botão "Testar": ativo apenas quando testUrl for uma string não-vazia
 const hasTestUrl = typeof testUrl === "string" && testUrl.trim().length > 0;
+const projectIcons = icons.projectCard;
 ---
 
 <article class="card group flex flex-col">
@@ -93,14 +96,14 @@ const hasTestUrl = typeof testUrl === "string" && testUrl.trim().length > 0;
         class="w-4 h-4 transition-transform duration-240 group-hover:translate-x-1"
         fill="none"
         stroke="currentColor"
-        viewBox="0 0 24 24"
+        viewBox={projectIcons.repositoryArrow.viewBox}
         aria-hidden="true"
       >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          d={projectIcons.repositoryArrow.path}></path>
       </svg>
     </a>
 
@@ -120,14 +123,14 @@ const hasTestUrl = typeof testUrl === "string" && testUrl.trim().length > 0;
             class="w-3.5 h-3.5"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24"
+            viewBox={projectIcons.externalLink.viewBox}
             aria-hidden="true"
           >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              d={projectIcons.externalLink.path}
             />
           </svg>
         </a>
@@ -145,14 +148,14 @@ const hasTestUrl = typeof testUrl === "string" && testUrl.trim().length > 0;
             class="w-3.5 h-3.5"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24"
+            viewBox={projectIcons.externalLink.viewBox}
             aria-hidden="true"
           >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              d={projectIcons.externalLink.path}
             />
           </svg>
         </button>

@@ -1,0 +1,51 @@
+---
+/**
+ * BackToTop Component - Botão "Voltar ao Topo"
+ *
+ * Posicionado estaticamente no final da página, imediatamente antes do footer.
+ * Usa a segunda cor de destaque (accent-2: laranja #ff8a65).
+ * Ao clicar, executa scroll suave até o topo da página.
+ */
+---
+
+<!-- Seção centralizada que envolve o botão -->
+<div class="flex justify-center py-12 bg-modern-bg border-t border-modern-border">
+  <button
+    id="back-to-top-btn"
+    aria-label="Voltar ao topo da página"
+    class="group flex flex-col items-center gap-2 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-modern-accent2 rounded-xl"
+  >
+    <span
+    class="text-md font-medium tracking-wide text-modern-muted
+            transition-colors duration-240 group-hover:text-modern-accent2"
+    >
+        Voltar ao Topo
+    </span>
+    <span
+      class="flex items-center justify-center w-10 h-10 rounded-full bg-modern-accent2 text-modern-bg shadow-lg
+             transition-all duration-240 ease-in-out
+             group-hover:scale-110 group-hover:shadow-[0_0_18px_rgba(255,138,101,0.45)]
+             group-active:scale-95"
+      aria-hidden="true"
+    >
+      <!-- Seta para cima (Heroicons / outline) -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-6 h-6 transition-transform duration-240 group-hover:-translate-y-0.5"
+        aria-hidden="true"
+      >
+        <path d="M5 15l7-7 7 7" />
+      </svg>
+    </span>
+  </button>
+</div>
+
+<script>
+  import "../scripts/back-to-top.js";
+</script>
