@@ -7,7 +7,7 @@ services:
         networks:
             - internal
         volumes:
-            - ./open-webui:/app/backend/data
+            - open-webui:/app/backend/data
         environment:
               CORS_ALLOW_ORIGIN: ${CORS_ALLOW_ORIGIN}
               DATABASE_URL: ${DATABASE_URL}
