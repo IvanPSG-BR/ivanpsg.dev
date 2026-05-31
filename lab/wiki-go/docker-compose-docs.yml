@@ -6,12 +6,13 @@ services:
             - "8880:8080"
         volumes:
             - ./docs-data:/wiki/data
+            - ./docs-data/config.yaml:/wiki/data/config.yaml
         restart: unless-stopped
         deploy:
             resources:
                 limits:
                     cpus: '0.25'
-                    memory: 128M
+                    memory: 192M
     tunnel:
         image: cloudflare/cloudflared:latest
         restart: unless-stopped
