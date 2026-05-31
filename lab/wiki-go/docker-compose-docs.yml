@@ -5,7 +5,7 @@ services:
         ports:
             - "8880:8080"
         volumes:
-            - docs-data:/wiki/data
+            - ./docs-data:/wiki/data
         restart: unless-stopped
         deploy:
             resources:
