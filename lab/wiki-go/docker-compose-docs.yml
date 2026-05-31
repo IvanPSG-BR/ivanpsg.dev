@@ -6,7 +6,7 @@ services:
             - "8880:8080"
         volumes:
             - ./docs-data:/wiki/data
-            - ./docs-data/config.yaml:/wiki/data/config.yaml
+        command: ./wiki-go -configfile ./config.yaml
         restart: unless-stopped
         deploy:
             resources:
