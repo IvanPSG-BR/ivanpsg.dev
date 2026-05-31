@@ -1,0 +1,23 @@
+services:
+    vikunja:
+        image: vikunja/vikunja:2.3.0
+        environment:
+            VIKUNJA_SERVICE_PUBLICURL: ${VIKUNJA_SERVICE_PUBLICURL}
+            VIKUNJA_SERVICE_SECRET: ${VIKUNJA_SERVICE_SECRET}
+            VIKUNJA_DATABASE_PATH: ${VIKUNJA_DATABASE_PATH}
+        ports:
+            - 3456:3456
+        volumes:
+            - ./files:/app/vikunja/files
+            - ./db:/db
+        restart: unless-stopped
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.25'
+                    memory: 256M
+    tunnel:
+        image: cloudflare/cloudflared:latest
+        restart: unless-stopped
+        network_mode: host
+        command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
