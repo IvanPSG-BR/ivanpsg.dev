@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import db from "../../database/conn";
 import { projectsTable } from "../../database/schema";
-import { projectBaseDTO, projectCreateDTO } from "./projects.dto";
+import { projectBaseDTO, projectCreateDTO, projectUpdateDTO } from "./projects.dto";
 
 export default class ProjectsCRUD {
   
@@ -15,13 +15,13 @@ export default class ProjectsCRUD {
     return query;
   }
 
-  public async pickProject(id: number): Promise<projectBaseDTO | undefined> {
+  public async pickProject(id: number): Promise<projectBaseDTO | {}> {
     const query = await db.query.projectsTable
       .findFirst({
         where: eq(projectsTable.id, id)
       });
 
-    return query;
+    return query ?? {};
   }
 
   public async createProject(data: projectCreateDTO) {
@@ -30,7 +30,7 @@ export default class ProjectsCRUD {
     return query;
   }
 
-  public async updateProject(id: number, data: Partial<projectCreateDTO>) {
+  public async updateProject(id: number, data: projectUpdateDTO) {
     const query = await db.update(projectsTable)
       .set(data)
       .where(eq(projectsTable.id, id));

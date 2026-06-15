@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "IvanPSG-BR",
   "license": "GPL-3.0",
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@11.6.0",
   "dependencies": {
     "@libsql/client": "^0.17.3",
     "drizzle-orm": "^0.45.2",

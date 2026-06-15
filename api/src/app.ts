@@ -8,12 +8,12 @@ const projectRoutes = new ProjectRoutes()
 
 app.use('/health', health);
 
-app.use('/projects', projectRoutes.allProjects)
-app.use('/projects', projectRoutes.oneProject)
-app.use('/projects', projectRoutes.createProject)
-app.use('/projects', projectRoutes.updateProject)
-app.use('/projects', projectRoutes.deleteProject)
+app.use(`/${settings.apiVersion}/projects`, projectRoutes.allProjects)
+app.use(`/${settings.apiVersion}/projects`, projectRoutes.oneProject)
+app.use(`/${settings.apiVersion}/projects`, projectRoutes.createProject)
+app.use(`/${settings.apiVersion}/projects`, projectRoutes.updateProject)
+app.use(`/${settings.apiVersion}/projects`, projectRoutes.deleteProject)
 
 app.listen(settings.port, () => {
-  console.log("API rodando na URL " + settings.root);settings
+  console.log("API rodando na URL " + settings.root);
 })

@@ -21,7 +21,8 @@ switch (process.env.NODE_ENV) {
 const settings = {
   port: process.env.PORT ?? 3000,
   root: root,
-  dbFilename: dbFilename
+  dbFilename: dbFilename,
+  apiVersion: process.env.API_VERSION ?? "v1"
 }
 export default settings;
 
