@@ -1,18 +1,19 @@
 services:
-    wiki-go:
-        image: leomoonstudios/wiki-go:latest
-        container_name: wiki-go
+    gollum:
+        image: gollumwiki/gollum:master
         ports:
-            - "8880:8080"
+            - "8880:4567"
         volumes:
-            - ./docs-data:/wiki/data
-        command: ./wiki-go -configfile ./config.yaml
-        restart: unless-stopped
+            - ./wiki-data:/wiki
+        environment:
+            - GIT_AUTHOR_NAME=IvanPSG-BR
+            - GIT_AUTHOR_EMAIL=ivan.psg@protonmail.com
+            - GOLLUM_PARAMS=--allow-uploads
         deploy:
             resources:
                 limits:
                     cpus: '0.25'
-                    memory: 192M
+                    memory: 256M
     tunnel:
         image: cloudflare/cloudflared:latest
         restart: unless-stopped
