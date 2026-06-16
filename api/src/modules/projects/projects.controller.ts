@@ -3,7 +3,7 @@ import ProjectsCRUD from "./projects.service";
 import { projectCreateDTO, projectUpdateDTO } from "./projects.dto";
 
 export default class ProjectsController {
-  protected projectsService = new ProjectsCRUD;
+  private projectsService = new ProjectsCRUD;
   
   public async listProjects(req: Request, res: Response) {
     return res.status(200).send(this.projectsService.listProjects())

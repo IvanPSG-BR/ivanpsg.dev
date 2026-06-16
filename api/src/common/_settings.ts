@@ -22,7 +22,12 @@ const settings = {
   port: process.env.PORT ?? 3000,
   root: root,
   dbFilename: dbFilename,
-  apiVersion: process.env.API_VERSION ?? "v1"
+  apiVersion: process.env.API_VERSION ?? "v1",
+  smtpHost: process.env.SMTP_HOST ?? "",
+  smtpPort: process.env.SMTP_PORT ?? "",
+  smtpUser: process.env.SMTP_USER ?? "",
+  smtpPass: process.env.SMTP_PASS ?? "",
+  destinyEmail: process.env.DESTINY_EMAIL ?? ""
 }
 export default settings;
 
