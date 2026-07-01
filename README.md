@@ -45,13 +45,12 @@ Mais que um blog, o Elog é um mini-produto de backend integrado ao portfólio. 
 
 A infraestrutura é comprovada através de subdomínios ativos que rodam serviços reais meus em uma VPS própria:
 
-- `api.ivanpsg.dev`: Endpoint oficial da API do portfólio.
-- `lab.ivanpsg.dev`: Dashboard de monitoramento dos serviços expostos.
-- `rcode.ivanpsg.dev`: Code-Server (de apelido rcode, ou Remote Code) para acessar e implementar meus projetos direto da web.
-- `owebui.ivanpsg.dev`: Open WebUI para organização com IA através de um chat e diversos outros recursos.
-- `opencode.ivanpsg.dev`: OpenCode (web) para desenvolvimento com IA.
+- [WIP] `api.ivanpsg.dev`: Endpoint oficial da API do portfólio.
+- [WIP] `status.ivanpsg.dev`: Dashboard de monitoramento dos serviços expostos.
+- [BROKEN] `chat.ivanpsg.dev`: Open WebUI para organização com IA através de um chat e diversos outros recursos.
+- `omniroute.ivanpsg.dev`: Omniroute para roteamento de provedores de IA.
 
-Dentre outros possíveis serviços.
+Dentre outros possíveis serviços futuros.
 
 ### AI-Ready
 
